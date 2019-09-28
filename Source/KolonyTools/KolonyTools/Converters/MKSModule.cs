@@ -300,8 +300,11 @@ namespace KolonyTools
             foreach (var booster in boosters)
             {
                 if (booster.IsActive)
-                { 
-                    totalEfficiencyBoost += (float)(booster.EfficiencyMultiplier * booster.Multiplier);
+                {
+                    if (InCatchupMode())
+                        totalEfficiencyBoost += (float)booster.Multiplier;
+                    else
+                        totalEfficiencyBoost += (float)(booster.EfficiencyMultiplier * booster.Multiplier);
                 }
             }
 
